@@ -29,6 +29,7 @@ namespace Version3Lab6
         {
             driver.Navigate().GoToUrl("https://www.wildberries.ru/?_tt=1641384393519");
             driver.Manage().Window.Size = new System.Drawing.Size(1366, 768);
+            System.Threading.Thread.Sleep(1000);
 
         }
 
@@ -39,9 +40,14 @@ namespace Version3Lab6
             driver.Manage().Window.Size = new System.Drawing.Size(1366, 768);
             driver.FindElement(By.CssSelector("#searchInput")).Click();
             driver.FindElement(By.CssSelector("#searchInput")).SendKeys("iphone");
+            System.Threading.Thread.Sleep(1000);
             driver.FindElement(By.CssSelector("#searchInput")).SendKeys(Keys.Enter);
+            System.Threading.Thread.Sleep(1000);
+            driver.FindElement(By.CssSelector(".nav-element__logo")).Click();
             driver.FindElement(By.CssSelector("#searchInput")).SendKeys("");
             driver.FindElement(By.CssSelector("#searchInput")).SendKeys("Кросовки Nike");
+            System.Threading.Thread.Sleep(1000);
+            
         }
 
 
@@ -53,8 +59,11 @@ namespace Version3Lab6
 
             driver.FindElement(By.CssSelector("#searchInput")).Click();
             driver.FindElement(By.CssSelector("#searchInput")).SendKeys("якнчсиротлб");
+            System.Threading.Thread.Sleep(1000);
             driver.FindElement(By.CssSelector("#searchInput")).SendKeys(Keys.Enter);
+            System.Threading.Thread.Sleep(1000);
             driver.FindElements(By.CssSelector("p.catalog-page--non-search"));
+            System.Threading.Thread.Sleep(1000);
 
         }
     }
