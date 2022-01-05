@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,5 +9,53 @@ namespace Version3Lab6
 {
     class Test
     {
+        private IWebDriver driver;
+        public IDictionary<string, object> vars { get; private set; }
+        private IJavaScriptExecutor js;
+        [SetUp]
+        public void SetUp()
+        {
+            driver = new ChromeDriver();
+            js = (IJavaScriptExecutor)driver;
+            vars = new Dictionary<string, object>();
+        }
+        [TearDown]
+        protected void TearDown()
+        {
+            driver.Quit();
+        }
+        [Test]
+        public void opensite()
+        {
+            driver.Navigate().GoToUrl("https://www.wildberries.ru/?_tt=1641384393519");
+            driver.Manage().Window.Size = new System.Drawing.Size(1366, 768);
+
+        }
+
+        [Test]
+        public void searchonsite()
+        {
+            driver.Navigate().GoToUrl("https://www.wildberries.ru/?_tt=1641384393519");
+            driver.Manage().Window.Size = new System.Drawing.Size(1366, 768);
+            driver.FindElement(By.CssSelector("#searchInput")).Click();
+            driver.FindElement(By.CssSelector("#searchInput")).SendKeys("iphone");
+            driver.FindElement(By.CssSelector("#searchInput")).SendKeys(Keys.Enter);
+            driver.FindElement(By.CssSelector("#searchInput")).SendKeys("");
+            driver.FindElement(By.CssSelector("#searchInput")).SendKeys("Кросовки Nike");
+        }
+
+
+        [Test]
+        public void nothingmatches()
+        {
+            driver.Navigate().GoToUrl("https://www.wildberries.ru/?_tt=1641384393519");
+            driver.Manage().Window.Size = new System.Drawing.Size(1366, 768);
+
+            driver.FindElement(By.CssSelector("#searchInput")).Click();
+            driver.FindElement(By.CssSelector("#searchInput")).SendKeys("якнчсиротлб");
+            driver.FindElement(By.CssSelector("#searchInput")).SendKeys(Keys.Enter);
+            driver.FindElements(By.CssSelector("p.catalog-page--non-search"));
+
+        }
     }
 }
