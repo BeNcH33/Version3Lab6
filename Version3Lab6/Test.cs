@@ -47,7 +47,6 @@ namespace Version3Lab6
             driver.FindElement(By.CssSelector("#searchInput")).SendKeys("");
             driver.FindElement(By.CssSelector("#searchInput")).SendKeys("Кросовки Nike");
             System.Threading.Thread.Sleep(1000);
-            
         }
 
 
@@ -64,7 +63,7 @@ namespace Version3Lab6
             System.Threading.Thread.Sleep(1000);
             driver.FindElements(By.CssSelector("p.catalog-page--non-search"));
             System.Threading.Thread.Sleep(1000);
-
         }
+    
     }
 }
